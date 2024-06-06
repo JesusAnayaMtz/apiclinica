@@ -1,9 +1,11 @@
 package com.volt.api.controller;
 
+import com.volt.api.model.DatosActualizarMedico;
 import com.volt.api.model.DatosListadoMedico;
 import com.volt.api.model.DatosMedico;
 import com.volt.api.model.Medico;
 import com.volt.api.repository.MedicoRepository;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -35,5 +37,12 @@ public class MedicoController {
         //se modifica a Page para usar la paginacion y asi ya no se retorna con un stream si no pasamos como parametro en el find all la paginacion
         //y con map retornamos el listado de datoslistado medico
         return medicoRepository.findAll(paginacion).map(DatosListadoMedico::new);
+    }
+
+    @PutMapping("/actualizar")
+    @Transactional
+    public void actualizaMedico(@RequestBody @Valid DatosActualizarMedico datosActualizarMedico){
+        Medico medico = medicoRepository.getReferenceById(datosActualizarMedico.id());
+        medico.actualizarDatos(datosActualizarMedico);
     }
 }
