@@ -3,9 +3,9 @@ package com.volt.api.model;
 public record DatosMedico(
         String nombre,
         String email,
-        String documenton,
+        String documento,
         Especialidad especialidad,
-        Direccion direccion
+        DatosDireccion datosDireccion
 
 ) {
 }
