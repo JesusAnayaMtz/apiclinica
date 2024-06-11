@@ -1,4 +1,4 @@
-package com.volt.api.infra.secutiry;
+package com.volt.api.infra.security;
 
 import com.volt.api.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
